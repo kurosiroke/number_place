@@ -1,4 +1,5 @@
 import { View } from './js/view.js'
+import { Input } from './js/input.js'
 
 export const Main = {
   stage_id : 'NumberPlace',
@@ -6,6 +7,7 @@ export const Main = {
 
 function init(){
   Main.view = new View()
+  Main.input = new Input()
 }
 
 switch (document.readyState) {
