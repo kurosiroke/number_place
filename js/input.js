@@ -1,12 +1,9 @@
 import { Main } from '../main.js'
+import { Element } from './element.js'
 
 export class Input{
   constructor(){
     this.set_event()
-  }
-
-  get table(){
-    return document.getElementById(Main.stage_id)
   }
 
   get next_num(){
@@ -15,11 +12,12 @@ export class Input{
     return next_num > 9 ? 0 : next_num
   }
 
-  get interval(){
-    return 10
-  }
-
   set_event(){
+    const btn = Element.elm_button
+    if(btn){
+      btn.addEventListener('click' , this.click_btn.bind(this))
+    }
+    
     if(typeof window.ontouchstart !== 'undefined'){
       this.table.addEventListener('touchstart' , this.touchstart.bind(this))
       this.table.addEventListener('touchmove'  , this.touchmove.bind(this))
@@ -67,7 +65,7 @@ export class Input{
     if(!this.data.move_flg){
       this.data.num = this.next_num
     }
-    this.data.cell.textContent = this.data.num
+    this.data.cell.textContent = this.data.num || ''
     delete this.data
   }
 
@@ -75,5 +73,19 @@ export class Input{
   pos2num(pos){
     const num      = ~~(pos / this.interval)
     return num > 9 ? num % 10 : num
+  }
+  
+  click_btn(){
+    const status = Element.elm_button.getAttribute('data-status')
+    switch(status){
+      case 'check':
+        break
+        
+      case 'start':
+      default:
+        Element.elm_button.setAttribute('data-status' , 'check')
+        Main.question.new(Main.question_num)
+        break
+    }
   }
 }
