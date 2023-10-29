@@ -19,14 +19,14 @@ export class Input{
     }
     
     if(typeof window.ontouchstart !== 'undefined'){
-      this.table.addEventListener('touchstart' , this.touchstart.bind(this))
-      this.table.addEventListener('touchmove'  , this.touchmove.bind(this))
-      this.table.addEventListener('touchend'   , this.mouseup.bind(this))
+      Element.table.addEventListener('touchstart' , this.touchstart.bind(this))
+      Element.table.addEventListener('touchmove'  , this.touchmove.bind(this))
+      Element.table.addEventListener('touchend'   , this.mouseup.bind(this))
     }
     else{
-      this.table.addEventListener('mousedown'  , this.mousedown.bind(this))
-      this.table.addEventListener('mousemove'  , this.mousemove.bind(this))
-      this.table.addEventListener('mouseup'    , this.mouseup.bind(this))
+      Element.table.addEventListener('mousedown'  , this.mousedown.bind(this))
+      Element.table.addEventListener('mousemove'  , this.mousemove.bind(this))
+      Element.table.addEventListener('mouseup'    , this.mouseup.bind(this))
     }
   }
 
