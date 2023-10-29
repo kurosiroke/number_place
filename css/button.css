@@ -1,0 +1,32 @@
+button#btn{
+  width : calc(var(--size-stage) + 2px);
+  padding:10px;
+  border:2px solid var(--color-border-2);
+  display:block;
+  margin-bottom:5px;
+  background-color:#ddd;
+  border-radius:4px;
+  cursor:pointer;
+}
+button#btn:hover{
+  background-color:#eee;
+}
+button#btn:active{
+  background-color:#fee;
+  border-color:#FAA;
+  color:#FAA;
+}
+
+button#btn[data-status='start']::before{
+  content : 'Start';
+}
+
+button#btn[data-status='check']::before{
+  content : 'Check';
+}
+
+button#btn[data-status='disabled']{
+  pointer-events:none;
+  background-color:#bbb;
+  color:#ddd;
+}
