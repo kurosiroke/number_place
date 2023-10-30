@@ -2,7 +2,8 @@ import { Main } from '../main.js'
 import { Element } from './element.js'
 
 export class Question{
-  constructor(){
+  constructor(options){
+    this.options = options || {}
     this.load()
   }
   
@@ -44,6 +45,12 @@ export class Question{
           td_lists[j].setAttribute('data-status' , '')
         }
       }
+    }
+  }
+  
+  finish(){
+    if(this.options.callback){
+      this.options.callback()
     }
   }
 }
