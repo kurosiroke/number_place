@@ -1,6 +1,6 @@
-import { Main } from '../main.js'
+import { Main }    from '../main.js'
 import { Element } from './element.js'
-import { Commn } from './common.js'
+import { Common }  from './common.js'
 
 export class Input{
   constructor(){
@@ -18,7 +18,7 @@ export class Input{
     if(btn){
       btn.addEventListener('click' , this.click_btn.bind(this))
     }
-    
+
     if(typeof window.ontouchstart !== 'undefined'){
       Element.table.addEventListener('touchstart' , this.touchstart.bind(this))
       Element.table.addEventListener('touchmove'  , this.touchmove.bind(this))
@@ -42,6 +42,7 @@ export class Input{
   mousedown(e){
     const cell = e.target.closest('td')
     if(!cell){return}
+    if(cell.getAttribute('data-status') === 'lock'){return}
     this.data = {
       cell : cell,
       num  : Number(cell.textContent || 0),
@@ -54,7 +55,7 @@ export class Input{
   mousemove(e){
     if(!this.data){return}
     const size = Math.abs(e.pageX - this.data.pos.x)
-    if(size < this.interval){return}
+    if(size < Main.interval_px){return}
     const num  = this.pos2num(size)
     this.data.cell.textContent = num || ''
     this.data.num = num
@@ -73,16 +74,17 @@ export class Input{
 
   // 移動距離を0~9の数値に変換する
   pos2num(pos){
-    const num      = ~~(pos / this.interval)
+    const num = ~~(pos / Main.interval_px)
     return num > 9 ? num % 10 : num
   }
-  
+
   click_btn(){
     const status = Element.elm_button.getAttribute('data-status')
     switch(status){
       case 'check':
+        console.log('check')
         break
-        
+
       case 'start':
       default:
         Common.start()

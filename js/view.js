@@ -1,15 +1,15 @@
-import { Main } from '../main.js'
+import { Main }    from '../main.js'
 import { Element } from './element.js'
 
 export class View{
   constructor(){
-    if(!this.target){return}
+    if(!Element.table){return}
     this.set_stage()
   }
 
   set_stage(){
     const table = document.createElement('table')
-    this.target.appendChild(table)
+    Element.table.appendChild(table)
     this.set_row(table)
   }
   set_row(parent){
