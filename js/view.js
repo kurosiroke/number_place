@@ -1,13 +1,10 @@
 import { Main } from '../main.js'
+import { Element } from './element.js'
 
 export class View{
   constructor(){
     if(!this.target){return}
     this.set_stage()
-  }
-
-  get target(){
-    return document.getElementById(Main.stage_id)
   }
 
   set_stage(){
